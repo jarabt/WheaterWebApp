@@ -6,6 +6,21 @@
     <title>Wheater Web App</title>
   </head>
   <body>
+    <h4>Hill</h4>
+    <%= hill.name %>
+    <h4>Mountain</h4>
+    <%= hill.mountain %>
+    <h4>Height</h4>
+    <%= hill.height%>
+    <h4>Forecast</h4>
+    <% for (let i=0; i < hill.time.length; i++) { %>
+    <li>
+      date:<%= hill.time[i]%> temperature:<%= hill.temp[i]%> snow: <%=
+      hill.snow[i] %>
+    </li>
+    <% }; %>
+
+    <hr />
     <%= forecast %>
   </body>
 </html>
