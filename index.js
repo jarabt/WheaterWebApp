@@ -9,10 +9,19 @@ const tempParam = "temperature_2m_max";
 const snowParam = "snowfall_sum";
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
+  res.render("index.ejs", {
+    hills: hills,
+  });
+});
+
+app.get("/:id", async (req, res) => {
   try {
-    const chosenHill = hills[0];
+    const chosenHill = hills.find(
+      (hill) => hill.id === parseInt(req.params.id)
+    );
     const result = await axios.get("https://api.open-meteo.com/v1/forecast", {
       params: {
         latitude: chosenHill.latitude,
@@ -30,10 +39,10 @@ app.get("/", async (req, res) => {
       snow: result.data.daily[snowParam],
     };
     res.render("index.ejs", {
+      hills: hills,
       hill: hillData,
-      forecast: JSON.stringify(result.data),
     });
-    console.log(hills);
+    console.log(result.data);
   } catch (error) {
     console.log(error);
   }
@@ -45,6 +54,7 @@ app.listen(port, () => {
 
 const hills = [
   {
+    id: 1,
     name: "Sněžka",
     height: 1603,
     mountain: "Krkonoše",
@@ -52,6 +62,7 @@ const hills = [
     longitude: 15.739722,
   },
   {
+    id: 2,
     name: "Praděd",
     height: 1491,
     mountain: "Hrubý Jeseník",
@@ -59,6 +70,7 @@ const hills = [
     longitude: 17.230833,
   },
   {
+    id: 3,
     name: "Lysá hora",
     height: 1324,
     mountain: "Moravskoslezské Beskydy",
@@ -66,6 +78,7 @@ const hills = [
     longitude: 18.447222,
   },
   {
+    id: 4,
     name: "Klínovec",
     height: 1244,
     mountain: "Krušné hory",
@@ -73,6 +86,7 @@ const hills = [
     longitude: 12.967778,
   },
   {
+    id: 5,
     name: "Kralický Sněžník",
     height: 1423,
     mountain: "Kralický sněžník",

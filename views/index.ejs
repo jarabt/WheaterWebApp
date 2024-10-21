@@ -4,23 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wheater Web App</title>
+    <link rel="stylesheet" href="/styles/main.css" />
   </head>
   <body>
-    <h4>Hill</h4>
-    <%= hill.name %>
-    <h4>Mountain</h4>
-    <%= hill.mountain %>
-    <h4>Height</h4>
-    <%= hill.height%>
-    <h4>Forecast</h4>
-    <% for (let i=0; i < hill.time.length; i++) { %>
-    <li>
-      date:<%= hill.time[i]%> temperature:<%= hill.temp[i]%> snow: <%=
-      hill.snow[i] %>
-    </li>
-    <% }; %>
-
-    <hr />
-    <%= forecast %>
+    <div class="container">
+      <div class="left">
+        <h2>Hills</h2>
+        <ul>
+          <% hills.forEach(element => { %>
+          <li>
+            <a class="edit" href="/<%= element.id %>"><%= element.name %></a>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+      <div class="right">
+        <% if (locals.hill) { %>
+        <h4>Hill</h4>
+        <%= hill.name %>
+        <h4>Mountain</h4>
+        <%= hill.mountain %>
+        <h4>Height</h4>
+        <%= hill.height%>
+        <h4>Forecast</h4>
+        <% for (let i=0; i < hill.time.length; i++) { %>
+        <li>
+          date:<%= hill.time[i]%> temperature:<%= hill.temp[i]%> snow: <%=
+          hill.snow[i] %>
+        </li>
+        <% }; %> <% } else { %>
+        <h4>Click on a hill</h4>
+        <h4>👈</h4>
+        <% } %>
+    </div>
   </body>
 </html>
