@@ -2,6 +2,7 @@
 body,
 h1,
 h2,
+h4,
 p,
 ul,
 li,
@@ -13,9 +14,32 @@ a {
   padding: 0;
   border: none;
   font-family: "Arial", sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  background-color: #142850;
 }
 
 .container {
   display: flex;
   flex-direction: row;
+}
+
+h4,
+.hill {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Long Cang", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 80px;
+}
+
+li {
+  list-style-type: none;
 }

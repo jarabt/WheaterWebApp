@@ -89,7 +89,7 @@ const hills = [
     id: 5,
     name: "Kralický Sněžník",
     height: 1423,
-    mountain: "Kralický sněžník",
+    mountain: "Kralický Sněžník",
     latitude: 50.2075,
     longitude: 16.8475,
   },
