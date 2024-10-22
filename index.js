@@ -85,7 +85,6 @@ app.get("/:id", async (req, res) => {
       hills: hills,
       hill: hillData,
     });
-    console.log(new Date(result.data.daily.time[0]).toDateString());
   } catch (error) {
     console.log(error);
   }

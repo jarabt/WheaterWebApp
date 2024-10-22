@@ -27,6 +27,8 @@ body {
 .container {
   display: flex;
   flex-direction: row;
+  gap: 20px;
+  margin-left: 10px;
 }
 
 h4,
@@ -40,6 +42,7 @@ h2 {
   font-weight: 400;
   font-style: normal;
   font-size: 80px;
+  margin-bottom: 10px;
 }
 
 li {
@@ -49,4 +52,19 @@ li {
 .value {
   padding-left: 5px;
   text-align: left;
+}
+
+#right-data {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  #right-data {
+    flex-direction: column;
+  }
 }
