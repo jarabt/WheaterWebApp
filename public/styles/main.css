@@ -9,6 +9,8 @@ li,
 form,
 input,
 textarea,
+table,
+td,
 a {
   margin: 0;
   padding: 0;
@@ -42,4 +44,9 @@ h2 {
 
 li {
   list-style-type: none;
+}
+
+.value {
+  padding-left: 5px;
+  text-align: left;
 }

@@ -32,13 +32,25 @@
         <li><%= hill.mountain %></li>
         <li><%= hill.height%>m</li>
         <h4>Daily Snow Fall Sum</h4>
-        <% for (let i=0; i < hill.time.length; i++) { %>
-        <li><%= hill.time[i]%> <%= hill.snow[i] %>cm</li>
-        <% }; %>
+        <table>
+          <% for (let i=0; i < hill.time.length; i++) { %>
+          <tr>
+            <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
+            <td class="value"><%= hill.snow[i] %>cm</td>
+          </tr>
+          <% }; %>
+        </table>
         <h4>Daily Maximal Temps</h4>
-        <% for (let i=0; i < hill.time.length; i++) { %>
-        <li><%= hill.time[i]%> <%= hill.temp[i]%>℃</li>
-        <% }; %> <% } else { %>
+        <table>
+          <% for (let i=0; i < hill.time.length; i++) { %>
+          <tr>
+            <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
+            <td class="value"><%= hill.temp[i]%>℃</td>
+          </tr>
+          <% }; %>
+        </table>
+
+        <% } else { %>
         <h4>Click on a hill</h4>
         <h4>👈</h4>
         <% } %>

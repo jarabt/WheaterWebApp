@@ -5,53 +5,6 @@ import axios from "axios";
 const app = express();
 const port = 3000;
 
-const tempParam = "temperature_2m_max";
-const snowParam = "snowfall_sum";
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-
-app.get("/", async (req, res) => {
-  res.render("index.ejs", {
-    hills: hills,
-  });
-});
-
-app.get("/:id", async (req, res) => {
-  try {
-    const chosenHill = hills.find(
-      (hill) => hill.id === parseInt(req.params.id)
-    );
-    const result = await axios.get("https://api.open-meteo.com/v1/forecast", {
-      params: {
-        latitude: chosenHill.latitude,
-        longitude: chosenHill.longitude,
-        daily: tempParam + "," + snowParam,
-        timezone: "CET",
-      },
-    });
-    const hillData = {
-      name: chosenHill.name,
-      mountain: chosenHill.mountain,
-      height: chosenHill.height,
-      time: result.data.daily.time,
-      temp: result.data.daily[tempParam],
-      snow: result.data.daily[snowParam],
-    };
-    res.render("index.ejs", {
-      hills: hills,
-      hill: hillData,
-    });
-    console.log(result.data);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
-
 const hills = [
   {
     id: 1,
@@ -94,3 +47,50 @@ const hills = [
     longitude: 16.8475,
   },
 ];
+
+const tempParam = "temperature_2m_max";
+const snowParam = "snowfall_sum";
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+app.get("/", async (req, res) => {
+  res.render("index.ejs", {
+    hills: hills,
+  });
+});
+
+app.get("/:id", async (req, res) => {
+  try {
+    const chosenHill = hills.find(
+      (hill) => hill.id === parseInt(req.params.id)
+    );
+    const result = await axios.get("https://api.open-meteo.com/v1/forecast", {
+      params: {
+        latitude: chosenHill.latitude,
+        longitude: chosenHill.longitude,
+        daily: tempParam + "," + snowParam,
+        timezone: "CET",
+      },
+    });
+    const hillData = {
+      name: chosenHill.name,
+      mountain: chosenHill.mountain,
+      height: chosenHill.height,
+      time: result.data.daily.time,
+      temp: result.data.daily[tempParam],
+      snow: result.data.daily[snowParam],
+    };
+    res.render("index.ejs", {
+      hills: hills,
+      hill: hillData,
+    });
+    console.log(new Date(result.data.daily.time[0]).toDateString());
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
