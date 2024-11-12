@@ -19,7 +19,9 @@
         <ul>
           <% hills.forEach(element => { %>
           <li>
-            <a class="hill" href="/<%= element.id %>"><%= element.name %></a>
+            <a class="hill" href="/hill/<%= element.id %>"
+              ><%= element.name %></a
+            >
           </li>
           <% }); %>
         </ul>

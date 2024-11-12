@@ -54,13 +54,13 @@ const snowParam = "snowfall_sum";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   res.render("index.ejs", {
     hills: hills,
   });
 });
 
-app.get("/:id", async (req, res) => {
+app.get("/hill/:id", async (req, res) => {
   try {
     const chosenHill = hills.find(
       (hill) => hill.id === parseInt(req.params.id)
