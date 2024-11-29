@@ -23,56 +23,19 @@ const db = new pg.Client({
 });
 db.connect();
 
-let dbHills = [];
-const hills = [
-  {
-    id: 1,
-    name: "Sněžka",
-    height: 1603,
-    mountain: "Krkonoše",
-    latitude: 50.736111,
-    longitude: 15.739722,
-  },
-  {
-    id: 2,
-    name: "Praděd",
-    height: 1491,
-    mountain: "Hrubý Jeseník",
-    latitude: 50.083056,
-    longitude: 17.230833,
-  },
-  {
-    id: 3,
-    name: "Lysá hora",
-    height: 1324,
-    mountain: "Moravskoslezské Beskydy",
-    latitude: 49.546111,
-    longitude: 18.447222,
-  },
-  {
-    id: 4,
-    name: "Klínovec",
-    height: 1244,
-    mountain: "Krušné hory",
-    latitude: 50.396389,
-    longitude: 12.967778,
-  },
-  {
-    id: 5,
-    name: "Kralický Sněžník",
-    height: 1423,
-    mountain: "Kralický Sněžník",
-    latitude: 50.2075,
-    longitude: 16.8475,
-  },
-];
+let hills = [];
 
 app.get("/", async (req, res) => {
-  const allRecords = await db.query("SELECT * FROM hills");
-  console.log(allRecords.rows);
-  res.render("index.ejs", {
-    hills: hills,
-  });
+  try {
+    const allRecords = await db.query("SELECT * FROM hills");
+    //console.log(allRecords.rows);
+    hills = allRecords.rows;
+    res.render("index.ejs", {
+      hills: hills,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/hill/:id", async (req, res) => {
