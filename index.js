@@ -1,9 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
+import pg from "pg";
+import env from "dotenv";
 
 const app = express();
 const port = 3000;
+env.config;
 
 const hills = [
   {
