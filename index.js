@@ -5,9 +5,8 @@ import pg from "pg";
 import env from "dotenv";
 
 const app = express();
-const port = 3000;
 env.config();
-
+const port = process.env.APP_PORT;
 const tempParam = "temperature_2m_max";
 const snowParam = "snowfall_sum";
 
