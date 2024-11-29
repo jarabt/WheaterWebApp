@@ -6,8 +6,24 @@ import env from "dotenv";
 
 const app = express();
 const port = 3000;
-env.config;
+env.config();
 
+const tempParam = "temperature_2m_max";
+const snowParam = "snowfall_sum";
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+const db = new pg.Client({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+});
+db.connect();
+
+let dbHills = [];
 const hills = [
   {
     id: 1,
@@ -51,13 +67,9 @@ const hills = [
   },
 ];
 
-const tempParam = "temperature_2m_max";
-const snowParam = "snowfall_sum";
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const allRecords = await db.query("SELECT * FROM hills");
+  console.log(allRecords.rows);
   res.render("index.ejs", {
     hills: hills,
   });
