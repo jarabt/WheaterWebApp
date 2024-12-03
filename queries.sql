@@ -15,3 +15,9 @@ INSERT INTO hills (name, height, mountain, latitude, longitude) VALUES ('Sněžk
 ('Klínovec', 1244, 'Krušné hory', 50.396389, 12.967778), 
 ('Kralický Sněžník', 1423, 'Kralický Sněžník', 50.2075, 16.8475);
 
+-- Creating users table --
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	password VARCHAR(100)
+)
