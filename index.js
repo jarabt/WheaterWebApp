@@ -41,6 +41,10 @@ app.get("/", (req, res) => {
 //   }
 // });
 
+app.get("/register", (req, res) => {
+  res.render("register.ejs");
+});
+
 app.get("/hill/:id", async (req, res) => {
   try {
     const chosenHill = hills.find(
@@ -69,6 +73,10 @@ app.get("/hill/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+app.post("/register", (req, res) => {
+  console.log(req.body);
 });
 
 app.listen(port, () => {

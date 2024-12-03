@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<div class="left">
+  <h4>Register</h4>
+  <form id="create-form" action="/register" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" maxlength="100" />
+    <label for="password">Password</label>
+    <input type="password" name="password" maxlength="100" />
+    <button type="submit">
+      <h4>Submit</h4>
+    </button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>
