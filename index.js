@@ -24,18 +24,22 @@ db.connect();
 
 let hills = [];
 
-app.get("/", async (req, res) => {
-  try {
-    const allRecords = await db.query("SELECT * FROM hills");
-    //console.log(allRecords.rows);
-    hills = allRecords.rows;
-    res.render("index.ejs", {
-      hills: hills,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+app.get("/", (req, res) => {
+  res.render("home.ejs");
 });
+
+// app.get("/", async (req, res) => {
+//   try {
+//     const allRecords = await db.query("SELECT * FROM hills");
+//     //console.log(allRecords.rows);
+//     hills = allRecords.rows;
+//     res.render("index.ejs", {
+//       hills: hills,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 app.get("/hill/:id", async (req, res) => {
   try {
