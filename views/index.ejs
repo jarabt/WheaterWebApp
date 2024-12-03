@@ -1,52 +1,50 @@
 <%- include('partials/header') %>
 
-<div class="container">
-  <div class="left">
-    <ul>
-      <% hills.forEach(element => { %>
-      <li>
-        <a class="hill" href="/hill/<%= element.id %>"><%= element.name %></a>
-      </li>
-      <% }); %>
-    </ul>
-  </div>
-  <div id="right">
-    <div id="right-data">
-      <% if (locals.hill) { %>
-      <div>
-        <h4>Hill Info</h4>
-        <li><%= hill.name %></li>
-        <li><%= hill.mountain %></li>
-        <li><%= hill.height%>m</li>
-      </div>
-      <div>
-        <h4>Daily Snow Fall Sum</h4>
-        <table>
-          <% for (let i=0; i < hill.time.length; i++) { %>
-          <tr>
-            <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
-            <td class="value"><%= hill.snow[i] %>cm</td>
-          </tr>
-          <% }; %>
-        </table>
-      </div>
-      <div>
-        <h4>Daily Maximal Temps</h4>
-        <table>
-          <% for (let i=0; i < hill.time.length; i++) { %>
-          <tr>
-            <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
-            <td class="value"><%= hill.temp[i]%>℃</td>
-          </tr>
-          <% }; %>
-        </table>
-      </div>
-
-      <% } else { %>
-      <h4>Click on a hill</h4>
-      <h4>👈</h4>
-      <% } %>
+<div class="left">
+  <ul>
+    <% hills.forEach(element => { %>
+    <li>
+      <a class="hill" href="/hill/<%= element.id %>"><%= element.name %></a>
+    </li>
+    <% }); %>
+  </ul>
+</div>
+<div id="right">
+  <div id="right-data">
+    <% if (locals.hill) { %>
+    <div>
+      <h4>Hill Info</h4>
+      <li><%= hill.name %></li>
+      <li><%= hill.mountain %></li>
+      <li><%= hill.height%>m</li>
     </div>
+    <div>
+      <h4>Daily Snow Fall Sum</h4>
+      <table>
+        <% for (let i=0; i < hill.time.length; i++) { %>
+        <tr>
+          <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
+          <td class="value"><%= hill.snow[i] %>cm</td>
+        </tr>
+        <% }; %>
+      </table>
+    </div>
+    <div>
+      <h4>Daily Maximal Temps</h4>
+      <table>
+        <% for (let i=0; i < hill.time.length; i++) { %>
+        <tr>
+          <td><%= new Date(hill.time[i]).toLocaleDateString() %></td>
+          <td class="value"><%= hill.temp[i]%>℃</td>
+        </tr>
+        <% }; %>
+      </table>
+    </div>
+
+    <% } else { %>
+    <h4>Click on a hill</h4>
+    <h4>👈</h4>
+    <% } %>
   </div>
 </div>
 
