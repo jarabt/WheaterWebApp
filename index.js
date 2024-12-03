@@ -45,6 +45,10 @@ app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+
 app.get("/hill/:id", async (req, res) => {
   try {
     const chosenHill = hills.find(
@@ -76,6 +80,10 @@ app.get("/hill/:id", async (req, res) => {
 });
 
 app.post("/register", (req, res) => {
+  console.log(req.body);
+});
+
+app.post("/login", (req, res) => {
   console.log(req.body);
 });
 
